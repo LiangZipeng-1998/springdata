@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# CodeStream ignored files
+/../../springdata\.idea/codestream.xml
+# Datasource local storage ignored files
+/../../../../../../../:\Desktop\Java\Spring Data JPA\1.code\springdata\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

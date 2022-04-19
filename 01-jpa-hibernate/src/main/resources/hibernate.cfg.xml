@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- 配置数据库连接信息 -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/springdata_jpa?characterEncoding=UTF-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+        <!-- 会在日志中记录sql  默认false -->
+        <property name="show_sql">true</property>
+        <!-- 是否格式化sql  默认false -->
+        <property name="format_sql">true</property>
+        <!-- 表生成策略
+             默认none  不自动生成
+             update   如果没有表会创建,有会检查更新
+             create   创建
+         -->
+        <property name="hbm2ddl.auto">update</property>
+        <!-- 配置方言: 连接数据库类型 -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!-- 指定哪些pojo  需要进行ORM映射 -->
+        <mapping class="com.tuling.pojo.Customer"></mapping>
+
+    </session-factory>
+</hibernate-configuration>

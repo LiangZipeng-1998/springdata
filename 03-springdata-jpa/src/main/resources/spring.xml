@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/jpa
+    https://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--用于整合jpa  @EnableJpaRepositories -->
+    <jpa:repositories base-package="com.tuling.repositories"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"
+
+    />
+
+
+    <!--EntityManagerFactory-->
+    <bean name="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <!--Hibernate实现-->
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <!--生成数据库表-->
+                <property name="generateDdl" value="true"></property>
+                <property name="showSql" value="true"></property>
+            </bean>
+        </property>
+        <!--设置实体类的包-->
+        <property name="packagesToScan" value="com.tuling.pojo"></property>
+        <property name="dataSource" ref="dataSource" ></property>
+    </bean>
+
+    <!--数据源-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" name="dataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springdata_jpa?characterEncoding=UTF-8"/>
+    </bean>
+
+    <!--声明式事务-->
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" name="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+    </bean>
+
+    <!--启动注解方式的声明式事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+</beans>
