@@ -27,24 +27,43 @@ public class OneToOneTest {
         Account account = new Account();
         account.setUsername("xushu");
 
-
         Customer customer = new Customer();
         customer.setCustName("徐庶");
         customer.setAccount(account);
+
+        account.setCustomer(customer);
 
         repository.save(customer);
 
     }
 
 
-    //查询
+    // 插入
     @Test
+    // 为什么懒加载要配置事务 ：
+    // 当通过repository调用完查询方法，session就会立即关闭， 一旦session你就不能查询，
+    // 加了事务后， 就能让session直到事务方法执行完毕后才会关闭
     public void test02() {
 
-        Optional<Customer> byId = repository.findById(2L);
+        Optional<Customer> customer = repository.findById(2L);// 只查询出客户， session关闭
+        System.out.println("=================");
+        System.out.println(customer.get());// toString
 
-        System.out.println(byId);
+    }
 
+
+    @Test
+    public void testD(){
+        repository.deleteById(2L);
+    }
+
+    @Test
+    public void testU(){
+        Customer customer = new Customer();
+        customer.setCustId(16L);
+        customer.setCustName("徐庶");
+        customer.setAccount(null);
+        repository.save(customer);
     }
 
 }

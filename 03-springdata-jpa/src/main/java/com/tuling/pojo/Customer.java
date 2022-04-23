@@ -3,6 +3,7 @@ package com.tuling.pojo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity     // 作为hibernate 实体类
@@ -38,13 +39,83 @@ public class Customer {
      *      一旦把关联的数据设置null ，或者修改为其他的关联数据， 如果想删除关联数据， 就可以设置true
      *
      *   optional  限制关联的对象不能为null
-     *      true 可以为null(默认 ) false 不能为null
+     *      true 可以为null(默认) false 不能为null
      *
      *   mappedBy  将外键约束执行另一方维护(通常在双向关联关系中，会放弃一方的外键约束）
      *      值= 另一方关联属性名
      **/
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="account_id")// 设置外键的字段名
+    @OneToOne(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+            /*,optional = false*/)
+    @JoinColumn(name="account_id")// 设置外键的字段名(本表)
     private Account account;
 
+    // 一对多
+    /**
+     * fetch 默认是懒加载
+     *
+     * 懒加载的优点:
+     *  1.提高查询性能
+     */
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id") //设置外键关联(关联表)
+    private List<Message> messages;
+
+//    @Override
+//    public String toString() {
+//        return "Customer{" +
+//                "custId=" + custId +
+//                ", custName='" + custName + '\'' +
+//                ", custAddress='" + custAddress + '\'' +
+//                ", account=" + account +
+//                ", messages=" + messages +  //会用到懒加载的数据,用到的时候就会执行懒加载查询
+//                '}';
+//    }
+
+    // 单向多对多
+    @ManyToMany(cascade = CascadeType.ALL)
+    /*中间表需要通过@JoinTable来维护外键：（不设置也会自动生成）
+     * name 指定中间表的名称
+     * joinColumns 设置本表的外键名称
+     * inverseJoinColumns 设置关联表的外键名称
+     * */
+    @JoinTable(
+            name="tb_customer_role",
+            joinColumns = {@JoinColumn(name="c_id")},
+            inverseJoinColumns = {@JoinColumn(name="r_id")}
+    )
+    private List<Role> roles;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

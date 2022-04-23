@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="01-jpa-hibernate" />
+        <module name="springdata-jpa-03" />
         <module name="02-springdata-jpa" />
         <module name="03-springdata-jpa" />
       </profile>
