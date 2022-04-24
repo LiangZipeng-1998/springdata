@@ -59,7 +59,7 @@ public class ManyToManyTest {
         repository.save(customer);
     }
 
-    
+    //查询
     @Test
     @Transactional
     public void test02(){
