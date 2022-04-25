@@ -2,10 +2,8 @@ package com.tuling;
 
 import com.tuling.config.SpringDataJPAConfig;
 import com.tuling.pojo.Customer;
-import com.tuling.pojo.Message;
 import com.tuling.pojo.Role;
 import com.tuling.repositories.CustomerRepository;
-import com.tuling.repositories.MessageRepository;
 import com.tuling.repositories.RoleRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +54,12 @@ public class ManyToManyTest {
         customer.setCustName("诸葛");
         customer.setRoles(roles);
 
+        Customer customer2 = new Customer();
+        customer2.setCustName("徐庶");
+        customer2.setRoles(roles);
+
         repository.save(customer);
+        repository.save(customer2);
     }
 
     //查询
