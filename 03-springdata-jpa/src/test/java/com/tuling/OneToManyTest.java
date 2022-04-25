@@ -7,6 +7,7 @@ import com.tuling.repositories.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,7 @@ public class OneToManyTest {
         messageList.add(new Message("在吗?"));
 
         Customer customer = new Customer();
-        customer.setCustName("诸葛");
+        customer.setCustName("徐庶帅哥");
         customer.setMessages(messageList);
 
         repository.save(customer);
@@ -72,4 +73,14 @@ public class OneToManyTest {
         repository.deleteById(1l);
     }
 
+    /**
+     * 修改
+     */
+    @Test
+    @Transactional
+    @Commit
+    public void test04(){
+        Optional<Customer> customer = repository.findById(4L);
+        customer.get().setCustName("xxx");
+    }
 }

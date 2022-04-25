@@ -25,7 +25,7 @@ import java.util.Optional;
 @Configuration          // 标记当前类为配置类   =xml配文件
 @EnableJpaRepositories(basePackages="com.tuling.repositories")  // 启动jpa    <jpa:repositories
 @EnableTransactionManagement    // 开启事务
-@EnableJpaAuditing
+@EnableJpaAuditing //启动审计功能
 public class SpringDataJPAConfig {
 
     @Bean
@@ -63,4 +63,54 @@ public class SpringDataJPAConfig {
         return txManager;
     }
 
+    /**
+     * 审计
+     * @return
+     */
+    @Bean
+    public AuditorAware<String> auditorAware() {
+        return new AuditorAware() {
+            @Override
+            public Optional getCurrentAuditor() {
+                // 当前用户 session redis springSecurity
+                return Optional.of("xushu");
+            }
+        };
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,21 @@
 package com.tuling.pojo;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
 @Entity     // 作为hibernate 实体类
 @Table(name = "tb_customer")       // 映射的表明
 @Data
+@EntityListeners(AuditingEntityListener.class) //审计 设置监听
 public class Customer {
 
     @Id
@@ -88,6 +95,30 @@ public class Customer {
             inverseJoinColumns = {@JoinColumn(name="r_id")}
     )
     private List<Role> roles;
+
+    //乐观锁
+    private @Version Long version;
+
+
+    //审计
+    @CreatedBy
+    String createdBy;
+
+    @LastModifiedBy
+    String modifiedBy;
+    /**
+     * 实体创建时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    protected Date dateCreated = new Date();
+
+    /**
+     * 实体修改时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    protected Date dateModified = new Date();
 
 }
 
