@@ -25,11 +25,12 @@ public class Customer {
 
     // 单向多对多
     @ManyToMany(cascade = CascadeType.ALL)
-    /*中间表需要通过@JoinTable来维护外键：（不设置也会自动生成）
+    /**
+     * 中间表需要通过@JoinTable来维护外键：（不设置也会自动生成）
      * name 指定中间表的名称
      * joinColumns 设置本表的外键名称
      * inverseJoinColumns 设置关联表的外键名称
-     * */
+     */
     @JoinTable(
             name="tb_customer_role",
             joinColumns = {@JoinColumn(name="c_id")},

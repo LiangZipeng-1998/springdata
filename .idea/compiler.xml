@@ -7,12 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springdata-jpa" />
         <module name="07-ManyToMany" />
         <module name="04-OneToOne" />
         <module name="05-OneToMany" />
         <module name="01-jpa-hibernate" />
-        <module name="springdata-jpa-03" />
         <module name="06-ManyToOne" />
         <module name="02-springdata-jpa" />
         <module name="03-springdata-jpa" />
