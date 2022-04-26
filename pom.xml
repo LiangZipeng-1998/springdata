@@ -15,6 +15,10 @@
         <module>02-springdata-jpa</module>
         <module>02-springdata-jpa</module>
         <module>03-springdata-jpa</module>
+        <module>04-OneToOne</module>
+        <module>05-OneToMany</module>
+        <module>06-ManyToOne</module>
+        <module>07-ManyToMany</module>
     </modules>
 
     <properties>
