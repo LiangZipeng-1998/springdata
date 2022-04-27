@@ -1,0 +1,5 @@
+com\tuling\pojo\Customer.class
+com\tuling\repositories\CustomerRepository.class
+com\tuling\config\SpringDataJPAConfig.class
+com\tuling\pojo\Role.class
+com\tuling\repositories\RoleRepository.class

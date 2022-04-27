@@ -4,6 +4,15 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
+/**
+ * @Data 等同于以下四个注解
+ *
+ * @Getter    生成所有属性的get方法
+ * @Setter    生成所有属性的set方法
+ * @RequiredArgsConstructor  生成final属性的构造函数， 如果没有final就是无参构造函数
+ * @EqualsAndHashCode
+ **/
 @Entity     // 作为hibernate 实体类
 @Table(name = "tb_customer")       // 映射的表名
 @Data
@@ -60,8 +69,18 @@ public class Customer {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true
-            /*,optional = false*/)
+            ,optional = false)
     @JoinColumn(name="account_id")// 设置外键的字段名(本表)
     private Account account;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "custId=" + custId +
+                ", custName='" + custName + '\'' +
+                ", custAddress='" + custAddress + '\'' +
+                ", account=" + account.toString() +
+                '}';
+    }
 
 }

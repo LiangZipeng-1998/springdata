@@ -43,12 +43,12 @@ public class ManyToManyTest {
         List<Role> roles=new ArrayList<>();
 
         //重复保存
-//        roles.add(new Role("超级管理员"));
-//        roles.add(new Role("商品管理员"));
+        roles.add(new Role("超级管理员"));
+        roles.add(new Role("商品管理员"));
 
         //不重复保存
-        roles.add(roleRepository.findById(1L).get());
-        roles.add(roleRepository.findById(2L).get());
+//        roles.add(roleRepository.findById(1L).get());
+//        roles.add(roleRepository.findById(2L).get());
 
         Customer customer = new Customer();
         customer.setCustName("诸葛");

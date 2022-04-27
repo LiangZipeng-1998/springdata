@@ -32,6 +32,6 @@ public class Role {
         this.rName = rName;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Role> roles;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Role> roles;
 }

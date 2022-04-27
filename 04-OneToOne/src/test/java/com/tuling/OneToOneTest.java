@@ -45,7 +45,7 @@ public class OneToOneTest {
     // 加了事务后， 就能让session直到事务方法执行完毕后才会关闭
     public void test02() {
 
-        Optional<Customer> customer = repository.findById(2L);// 只查询出客户， session关闭
+        Optional<Customer> customer = repository.findById(1L);// 只查询出客户， session关闭
         System.out.println("=================");
         System.out.println(customer.get());// toString
 
@@ -54,17 +54,19 @@ public class OneToOneTest {
     //删除
     @Test
     public void testD(){
-        repository.deleteById(2L);
+        repository.deleteById(1L);
     }
 
     //修改
     @Test
     public void testU(){
         Customer customer = new Customer();
-        customer.setCustId(16L);
-        customer.setCustName("徐庶");
+        customer.setCustId(2L);
+        customer.setCustName("曹操");
         customer.setAccount(null);
         repository.save(customer);
     }
+
+
 
 }

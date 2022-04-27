@@ -11,9 +11,9 @@
         <module name="04-OneToOne" />
         <module name="05-OneToMany" />
         <module name="01-jpa-hibernate" />
+        <module name="03-springdata-jpa" />
         <module name="06-ManyToOne" />
         <module name="02-springdata-jpa" />
-        <module name="03-springdata-jpa" />
       </profile>
     </annotationProcessing>
   </component>

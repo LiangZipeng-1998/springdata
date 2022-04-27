@@ -8,18 +8,10 @@ import javax.persistence.*;
  * 一对一
  * 一个客户对一个账户
  */
-
-/**
- * @Data 等同于以下四个注解
- *
- * @Getter    生成所有属性的get方法
- * @Setter    生成所有属性的set方法
- * @RequiredArgsConstructor  生成final属性的构造函数， 如果没有final就是无参构造函数
- * @EqualsAndHashCode
- **/
 @Entity
 @Table(name="tb_account")
-@Data
+@Getter
+@Setter
 public class Account {
 
     @Id
@@ -32,4 +24,12 @@ public class Account {
     @JoinColumn(name="customer_id")
     private Customer customer;
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

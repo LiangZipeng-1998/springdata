@@ -51,7 +51,7 @@ public class OneToManyTest {
     @Transactional(readOnly = true) //加强性能,直到整个方法执行完之后,才会关闭Session
     public void test02(){
 
-        Optional<Customer> byId = repository.findById(2l); //执行到此处,会关闭Session
+        Optional<Customer> byId = repository.findById(1l); //执行到此处,会关闭Session
         System.out.println("=================");
         System.out.println(byId);
 
